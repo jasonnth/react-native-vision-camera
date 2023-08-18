@@ -60,7 +60,7 @@ class FrameProcessorRuntimeManager(context: ReactApplicationContext, frameProces
   @DoNotStrip
   @Keep
   fun findCameraViewById(viewId: Int): CameraView {
-    val ctx = reactApplicationContext
+    val ctx = mContext?.get()
     var view: CameraView? = null
 
     try {
@@ -77,7 +77,6 @@ class FrameProcessorRuntimeManager(context: ReactApplicationContext, frameProces
         //
       }
     }
-
     Log.d(TAG,  if (view != null) "Found view $viewId!" else "Couldn't find view $viewId!")
     return view ?: throw ViewNotFoundError(viewId)
   }
